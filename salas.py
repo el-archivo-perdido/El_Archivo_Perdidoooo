@@ -1,4 +1,4 @@
-"""Una función por sala. Cada una recibe `estado` y devuelve True si se superó."""
+
 from arbol import ArbolBST
 from catalogo import CATALOGO
 from entrada import leer_texto, leer_entero, leer_opcion
@@ -9,7 +9,7 @@ from preguntas import hacer_pregunta
 
 ORIGEN = (41, 27)
 FRAGMENTO_POS = (43, 29)
-LIMITES = (38, 44, 24, 30)          # fila_min, fila_max, col_min, col_max
+LIMITES = (38, 44, 24, 30)     
 MOVIMIENTOS = {"w": (-1, 0), "s": (1, 0), "a": (0, -1), "d": (0, 1)}
 PISTAS_CORRECTAS = {"azul", "roble", "norte"}
 
@@ -21,7 +21,6 @@ def otorgar_fragmento(estado, codigo):
     print(f"  Fragmento obtenido: {fragmento['titulo']} (valor {fragmento['valor']})")
 
 
-# ---------------------------------------------------------------- Vestíbulo
 def sala_vestibulo(estado):
     print("\n=== VESTÍBULO ===")
     print("El Guardián del Silo Azul te recibe con una linterna: "
@@ -35,7 +34,6 @@ def sala_vestibulo(estado):
     return True
 
 
-# ------------------------------------------------------------- Estanterías
 def sala_estanterias(estado):
     j = estado["jugador"]
     print("\n=== SALA DE ESTANTERÍAS ===")
@@ -67,11 +65,11 @@ def sala_estanterias(estado):
     return False
 
 
-# -------------------------------------------------------------------- Mapas
+
 def mover(pos, direccion):
-    fila, col = pos                           # desempaquetado
-    df, dc = MOVIMIENTOS[direccion]           # desempaquetado
-    nueva = (fila + df, col + dc)             # tupla nueva (inmutable)
+    fila, col = pos                       
+    df, dc = MOVIMIENTOS[direccion]       
+    nueva = (fila + df, col + dc)            
     fmin, fmax, cmin, cmax = LIMITES
     if fmin <= nueva[0] <= fmax and cmin <= nueva[1] <= cmax:
         return nueva
@@ -80,7 +78,7 @@ def mover(pos, direccion):
 
 
 def recorrer(ruta):
-    for fila, col in ruta:                    # desempaquetado en el recorrido
+    for fila, col in ruta:                   
         print(f"  Pasaste por ({fila}, {col})")
 
 
@@ -106,7 +104,6 @@ def sala_mapas(estado):
     return False
 
 
-# ------------------------------------------------------------------- Fichas
 def consultar(catalogo, codigo):
     try:
         return catalogo[codigo]
@@ -135,18 +132,17 @@ def sala_fichas(estado):
     return False
 
 
-# ------------------------------------------------------------------- Sellos
 def sala_sellos(estado):
     j = estado["jugador"]
     print("\n=== SALA DE SELLOS ===")
     print("El Guardián del Silo Azul susurra: «Pista: el silo es de color azul».")
     print("Escribe tus pistas separadas por comas (se requieren al menos 2 correctas).")
     entradas = [p.strip().lower() for p in leer_texto("Pistas: ").split(",") if p.strip()]
-    pistas = set(entradas)                           # elimina duplicados
+    pistas = set(entradas)                          
     print(f"  Duplicados descartados: {len(entradas) - len(pistas)}")
-    validas = pistas & PISTAS_CORRECTAS              # intersección
-    faltantes = PISTAS_CORRECTAS - pistas            # diferencia
-    todas = pistas | PISTAS_CORRECTAS                # unión
+    validas = pistas & PISTAS_CORRECTAS           
+    faltantes = PISTAS_CORRECTAS - pistas        
+    todas = pistas | PISTAS_CORRECTAS              
     print(f"  Válidas: {sorted(validas)} | Faltantes: {len(faltantes)} | Total conocido: {len(todas)}")
     if len(validas) < 2:
         perder_vida(j, 15)
@@ -157,7 +153,6 @@ def sala_sellos(estado):
     return True
 
 
-# ------------------------------------------------------------------ Central
 def sala_central(estado):
     j = estado["jugador"]
     print("\n=== SALA CENTRAL ===")
