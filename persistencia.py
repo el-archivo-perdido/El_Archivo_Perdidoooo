@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """Persistencia: partida, fragmentos recolectados y tabla de puntajes (JSON).
 
 Todas las lecturas y escrituras manejan excepciones para que el juego no se caiga
@@ -91,12 +92,43 @@ def cargar_partida(ruta=None):
     except FileNotFoundError:
         print("No hay partida guardada.")
     except ValueError:      # incluye JSONDecodeError y UnicodeDecodeError
+=======
+
+import json
+import os
+
+RUTA_PARTIDA = "datos/partida.json"
+RUTA_PUNTAJES = "datos/puntajes.json"
+
+
+def guardar_partida(estado, ruta=RUTA_PARTIDA):
+    try:
+        os.makedirs(os.path.dirname(ruta), exist_ok=True)
+        with open(ruta, "w", encoding="utf-8") as f:
+            json.dump(estado, f, ensure_ascii=False, indent=2)
+        print("  (Partida guardada)")
+    except OSError as e:
+        print(f"  No se pudo guardar: {e}")
+
+
+def cargar_partida(ruta=RUTA_PARTIDA):
+    try:
+        with open(ruta, encoding="utf-8") as f:
+            estado = json.load(f)
+        if not {"jugador", "inventario", "sala"} <= set(estado):
+            raise ValueError("faltan claves")
+        return estado
+    except FileNotFoundError:
+        print("No hay partida guardada.")
+    except (json.JSONDecodeError, ValueError):
+>>>>>>> fd438b1ddaf45f035dc5cff6c664c70967472097
         print("El archivo de guardado está dañado.")
     except OSError as e:
         print(f"No se pudo leer el archivo: {e}")
     return None
 
 
+<<<<<<< HEAD
 def guardar_fragmentos(fragmentos, ruta=None):
     """Guarda en un archivo los fragmentos recolectados (lista de diccionarios).
 
@@ -177,21 +209,41 @@ def registrar_puntaje(nombre, puntaje, ruta=None):
         None.
     """
     ruta = ruta or RUTA_PUNTAJES
+=======
+def leer_puntajes(ruta=RUTA_PUNTAJES):
+    try:
+        with open(ruta, encoding="utf-8") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
+
+
+def registrar_puntaje(nombre, puntaje, ruta=RUTA_PUNTAJES):
+>>>>>>> fd438b1ddaf45f035dc5cff6c664c70967472097
     tabla = leer_puntajes(ruta)
     tabla.append({"nombre": nombre, "puntaje": round(puntaje, 1)})
     tabla.sort(key=lambda r: r["puntaje"], reverse=True)
     try:
+<<<<<<< HEAD
         _escribir_json(tabla[:10], ruta)
+=======
+        os.makedirs(os.path.dirname(ruta), exist_ok=True)
+        with open(ruta, "w", encoding="utf-8") as f:
+            json.dump(tabla[:10], f, ensure_ascii=False, indent=2)
+>>>>>>> fd438b1ddaf45f035dc5cff6c664c70967472097
     except OSError as e:
         print(f"No se pudo guardar el puntaje: {e}")
 
 
 def mostrar_puntajes():
+<<<<<<< HEAD
     """Imprime la tabla de puntajes.
 
     Retorna:
         None.
     """
+=======
+>>>>>>> fd438b1ddaf45f035dc5cff6c664c70967472097
     tabla = leer_puntajes()
     print("\n=== TABLA DE PUNTAJES ===")
     if not tabla:

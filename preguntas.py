@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 """Preguntas conceptuales: (pregunta, opciones, índice correcto 1-based, explicación)."""
+=======
+
+>>>>>>> fd438b1ddaf45f035dc5cff6c664c70967472097
 from entrada import leer_entero
 from jugador import sumar_puntos
 
@@ -25,6 +29,7 @@ PREGUNTAS = {
 
 
 def hacer_pregunta(jugador, clave):
+<<<<<<< HEAD
     """Hace la pregunta conceptual de una sala y otorga 10 puntos si se acierta.
 
     Parámetros:
@@ -34,6 +39,8 @@ def hacer_pregunta(jugador, clave):
     Retorna:
         None (imprime el resultado y la explicación).
     """
+=======
+>>>>>>> fd438b1ddaf45f035dc5cff6c664c70967472097
     pregunta, opciones, correcta, explicacion = PREGUNTAS[clave]
     print(f"\n--- Pregunta conceptual ---\n{pregunta}")
     for i, op in enumerate(opciones, start=1):

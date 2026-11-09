@@ -1,5 +1,3 @@
-"""Vestíbulo: atributos del jugador (int, float, str, bool)."""
-
 
 def crear_jugador(nombre, dificultad):
     """Crea el diccionario del jugador con tipos explícitos.

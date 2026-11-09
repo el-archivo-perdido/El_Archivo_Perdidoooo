@@ -1,4 +1,4 @@
-"""Menú principal y flujo de la partida."""
+
 from entrada import leer_opcion, leer_si_no
 from jugador import mostrar_estado, subir_nivel
 from persistencia import (guardar_partida, cargar_partida, guardar_fragmentos,
