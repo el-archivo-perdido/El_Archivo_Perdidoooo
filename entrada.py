@@ -1,5 +1,3 @@
-"""Validación de entradas del usuario (reutilizable en todo el juego)."""
-
 
 def leer_entero(mensaje, minimo, maximo):
     """Pide un entero en [minimo, maximo]; repite hasta que sea válido."""
