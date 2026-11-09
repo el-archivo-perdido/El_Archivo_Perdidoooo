@@ -1,7 +1,7 @@
 """Menú principal y flujo de la partida."""
 from entrada import leer_opcion, leer_si_no
 from jugador import mostrar_estado, subir_nivel
-from persistencia import (guardar_partida, cargar_partida,
+from persistencia import (guardar_partida, cargar_partida, guardar_fragmentos,
                           registrar_puntaje, mostrar_puntajes)
 from salas import (sala_vestibulo, sala_estanterias, sala_mapas,
                    sala_fichas, sala_sellos, sala_central)
@@ -20,10 +20,23 @@ RETROALIMENTACION = [
 
 
 def nuevo_estado():
+    """Crea el estado inicial de una partida nueva.
+
+    Retorna:
+        dict: estado con jugador (None), inventario vacío y sala 0.
+    """
     return {"jugador": None, "inventario": [], "sala": 0}
 
 
 def cierre(estado):
+    """Cierra la partida: muestra el estado, registra el puntaje y da la retroalimentación.
+
+    Parámetros:
+        estado (dict): estado de la partida terminada.
+
+    Retorna:
+        None.
+    """
     j = estado["jugador"]
     print("\n=== ¡ARCHIVO RESTAURADO! ===")
     mostrar_estado(j)
@@ -35,6 +48,20 @@ def cierre(estado):
 
 
 def jugar(estado):
+    """Ejecuta las salas en orden desde la sala guardada en el estado.
+
+    Si la partida ya estaba completada no se vuelve a registrar el puntaje.
+
+    Parámetros:
+        estado (dict): estado de la partida (se modifica).
+
+    Retorna:
+        None.
+    """
+    if estado["sala"] >= len(SALAS):
+        print("\nEsta partida ya fue completada.")
+        mostrar_estado(estado["jugador"])
+        return
     while estado["sala"] < len(SALAS):
         if estado["sala"] > 0:
             mostrar_estado(estado["jugador"])
@@ -53,6 +80,11 @@ def jugar(estado):
 
 
 def menu():
+    """Muestra el menú principal y atiende las opciones hasta que el usuario sale.
+
+    Retorna:
+        None.
+    """
     while True:
         print("\n=== EL ARCHIVO PERDIDO ===")
         print("1. Nueva partida\n2. Cargar partida\n3. Puntajes\n4. Salir")
@@ -62,6 +94,7 @@ def menu():
         elif opcion == "2":
             estado = cargar_partida()
             if estado:
+                guardar_fragmentos(estado["inventario"])   # sincroniza el archivo de fragmentos
                 jugar(estado)
         elif opcion == "3":
             mostrar_puntajes()
