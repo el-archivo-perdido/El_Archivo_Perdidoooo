@@ -1,5 +1,3 @@
-"""Vestíbulo: atributos del jugador (int, float, str, bool)."""
-
 
 def crear_jugador(nombre, dificultad):
     multiplicador = {1: 1.0, 2: 1.5, 3: 2.0}[dificultad]   # float
