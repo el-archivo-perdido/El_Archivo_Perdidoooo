@@ -1,4 +1,4 @@
-"""Guardado/carga de partida y tabla de puntajes (JSON) con manejo de excepciones."""
+
 import json
 import os
 
