@@ -1,4 +1,3 @@
-"""Sala de Estanterías: operaciones de lista sobre el inventario."""
 
 
 def insertar(inventario, fragmento):
@@ -24,7 +23,6 @@ def ordenar(inventario):
 
 
 def eliminar_duplicados(inventario):
-    """Quita fragmentos repetidos usando un conjunto. Devuelve cuántos quitó."""
     vistos = set()
     unicos = []
     for f in inventario:
@@ -37,5 +35,4 @@ def eliminar_duplicados(inventario):
 
 
 def titulos_valiosos(inventario, minimo=40):
-    """Comprensión de listas."""
     return [f["titulo"] for f in inventario if f["valor"] >= minimo]
