@@ -1,4 +1,4 @@
-"""Preguntas conceptuales: (pregunta, opciones, índice correcto 1-based, explicación)."""
+
 from entrada import leer_entero
 from jugador import sumar_puntos
 
