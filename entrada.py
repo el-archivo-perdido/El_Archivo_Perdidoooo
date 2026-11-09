@@ -1,6 +1,5 @@
 
 def leer_entero(mensaje, minimo, maximo):
-    """Pide un entero en [minimo, maximo]; repite hasta que sea válido."""
     while True:
         try:
             valor = int(input(mensaje))
@@ -12,7 +11,6 @@ def leer_entero(mensaje, minimo, maximo):
 
 
 def leer_texto(mensaje):
-    """Pide un texto no vacío."""
     while True:
         texto = input(mensaje).strip()
         if texto:
@@ -21,7 +19,6 @@ def leer_texto(mensaje):
 
 
 def leer_opcion(mensaje, validas):
-    """Pide una opción que esté dentro de `validas` (conjunto de str)."""
     while True:
         opcion = input(mensaje).strip().lower()
         if opcion in validas:
@@ -30,5 +27,4 @@ def leer_opcion(mensaje, validas):
 
 
 def leer_si_no(mensaje):
-    """Devuelve True para 's' y False para 'n'."""
     return leer_opcion(mensaje, {"s", "n"}) == "s"
