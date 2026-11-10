@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 """Sala de Estanterías: operaciones de lista sobre el inventario."""
 from arbol import codigo_numerico
-=======
->>>>>>> fd438b1ddaf45f035dc5cff6c664c70967472097
 
 
 def insertar(inventario, fragmento):
@@ -88,7 +85,6 @@ def ordenar(inventario):
 
 
 def eliminar_duplicados(inventario):
-<<<<<<< HEAD
     """Quita fragmentos repetidos usando un conjunto de códigos ya vistos.
 
     Conserva la primera aparición de cada código y respeta el orden.
@@ -99,8 +95,6 @@ def eliminar_duplicados(inventario):
     Retorna:
         int: cuántos fragmentos se descartaron.
     """
-=======
->>>>>>> fd438b1ddaf45f035dc5cff6c664c70967472097
     vistos = set()
     unicos = []
     for f in inventario:
@@ -113,7 +107,6 @@ def eliminar_duplicados(inventario):
 
 
 def titulos_valiosos(inventario, minimo=40):
-<<<<<<< HEAD
     """Lista los títulos de los fragmentos de valor alto (comprensión de listas).
 
     Parámetros:
@@ -123,6 +116,4 @@ def titulos_valiosos(inventario, minimo=40):
     Retorna:
         list[str]: títulos de los fragmentos con valor >= minimo.
     """
-=======
->>>>>>> fd438b1ddaf45f035dc5cff6c664c70967472097
     return [f["titulo"] for f in inventario if f["valor"] >= minimo]

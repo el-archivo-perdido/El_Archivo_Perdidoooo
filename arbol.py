@@ -150,12 +150,12 @@ class ArbolBST:
         pila = []
         actual = self.raiz
         while pila or actual is not None:
-            while actual is not None:        # bajar todo lo posible por la izquierda
+            while actual is not None:
                 pila.append(actual)
                 actual = actual.izq
             actual = pila.pop()
             resultado.append(actual.fragmento)
-            actual = actual.der              # luego visitar el subárbol derecho
+            actual = actual.der
         return resultado
 
     def altura(self):

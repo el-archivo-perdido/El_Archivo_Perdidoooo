@@ -68,7 +68,7 @@ def paso_ubicacion(fragmentos):
     print("\nPaso 3/6 - Ubicación: asignando (estante, nivel) a cada fragmento...")
     validos = [f for f in fragmentos if fragmento_valido(f)]
     ubicaciones = {f["codigo"]: UBICACIONES[f["codigo"]] for f in validos}
-    for codigo, (estante, nivel) in sorted(ubicaciones.items()):   # desempaquetado
+    for codigo, (estante, nivel) in sorted(ubicaciones.items()):
         print(f"  {codigo} -> estante {estante}, nivel {nivel}")
     invalidos = len(fragmentos) - len(validos)
     if invalidos:
@@ -191,7 +191,7 @@ def reconstruir_catalogo(estado):
         print("El Guardián del Silo Azul no encuentra los fragmentos guardados.")
         return False
     paso_depuracion(fragmentos)
-    estado["inventario"][:] = fragmentos          # el inventario queda depurado
+    estado["inventario"][:] = fragmentos
     validos, ubicaciones = paso_ubicacion(fragmentos)
     if not validos:
         print("  No hay fragmentos válidos para reconstruir el catálogo.")

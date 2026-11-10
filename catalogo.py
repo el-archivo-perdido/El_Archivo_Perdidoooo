@@ -8,7 +8,6 @@ CATALOGO = {
     "F05": {"codigo": "F05", "titulo": "Libro de Conjuntos",    "sala": "Sellos",      "valor": 60},
 }
 
-# Posición (estante, nivel) de cada fragmento en la biblioteca: tuplas inmutables.
 UBICACIONES = {
     "F03": (1, 1),
     "F01": (1, 2),

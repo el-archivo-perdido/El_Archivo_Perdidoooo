@@ -1,3 +1,5 @@
+"""Vestíbulo: atributos del jugador (int, float, str, bool)."""
+
 
 def crear_jugador(nombre, dificultad):
     """Crea el diccionario del jugador con tipos explícitos.
@@ -10,14 +12,14 @@ def crear_jugador(nombre, dificultad):
         dict: jugador con nombre (str), vida (int), puntaje (float), nivel (int),
         multiplicador (float) y activo (bool).
     """
-    multiplicador = {1: 1.0, 2: 1.5, 3: 2.0}[dificultad]   # float
+    multiplicador = {1: 1.0, 2: 1.5, 3: 2.0}[dificultad]
     return {
-        "nombre": str(nombre).strip(),   # str
-        "vida": 100,                     # int
-        "puntaje": 0.0,                  # float
-        "nivel": 1,                      # int
-        "multiplicador": multiplicador,  # float
-        "activo": True,                  # bool
+        "nombre": str(nombre).strip(),
+        "vida": 100,
+        "puntaje": 0.0,
+        "nivel": 1,
+        "multiplicador": multiplicador,
+        "activo": True,
     }
 
 

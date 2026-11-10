@@ -81,7 +81,7 @@ class TestArbol(unittest.TestCase):
         lista = [frag(n) for n in range(1, 301)]
         for f in lista:
             a.insertar(f)
-        self.assertEqual(a.altura(), 300)                       # lista enlazada
+        self.assertEqual(a.altura(), 300)
         self.assertEqual(a.buscar_con_conteo("F0300")[1], 300)
         self.assertEqual(buscar_secuencial_con_conteo(lista, "F0300")[1], 300)
 
@@ -129,19 +129,19 @@ class TestPersistencia(BaseTemporal):
         self.assertEqual(persistencia.cargar_fragmentos(), fr)
 
     def test_cargar_fragmentos_danado(self):
-        self.assertIsNone(persistencia.cargar_fragmentos())     # no existe
+        self.assertIsNone(persistencia.cargar_fragmentos())
         with open(persistencia.RUTA_FRAGMENTOS, "w", encoding="utf-8") as f:
-            json.dump([{"codigo": "F01"}], f)                   # faltan campos
+            json.dump([{"codigo": "F01"}], f)
         self.assertIsNone(persistencia.cargar_fragmentos())
 
 
 class TestPartida(BaseTemporal):
-    ENTRADAS = ["abc", "Ana", "x", "1", "2",      # vestíbulo (con entradas inválidas)
-                "x99", "1",                       # estanterías
-                "s", "s", "d", "d", "2",          # mapas
-                "F09", "F04", "1",                # fichas
-                "azul, roble, roble", "3",        # sellos
-                "xyz", "F99", "F03", "1"]         # central: código inválido, inexistente, válido
+    ENTRADAS = ["abc", "Ana", "x", "1", "2",
+                "x99", "1",
+                "s", "s", "d", "d", "2",
+                "F09", "F04", "1",
+                "azul, roble, roble", "3",
+                "xyz", "F99", "F03", "1"]
 
     def test_partida_completa(self):
         entradas = iter(self.ENTRADAS)
@@ -149,7 +149,7 @@ class TestPartida(BaseTemporal):
             estado = main.nuevo_estado()
             main.jugar(estado)
         self.assertEqual(estado["sala"], 6)
-        self.assertEqual(len(estado["inventario"]), 5)          # la copia de F02 se depuró
+        self.assertEqual(len(estado["inventario"]), 5)
         self.assertEqual(len(persistencia.leer_puntajes()), 1)
 
     def test_partida_terminada_no_duplica_puntaje(self):
@@ -157,7 +157,7 @@ class TestPartida(BaseTemporal):
         with patch("builtins.input", lambda _="": next(entradas)):
             estado = main.nuevo_estado()
             main.jugar(estado)
-        main.jugar(estado)                                       # ya completada
+        main.jugar(estado)
         self.assertEqual(len(persistencia.leer_puntajes()), 1)
 
 

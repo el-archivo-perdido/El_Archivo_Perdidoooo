@@ -1,4 +1,4 @@
-
+"""Menú principal y flujo de la partida."""
 from entrada import leer_opcion, leer_si_no
 from jugador import mostrar_estado, subir_nivel
 from persistencia import (guardar_partida, cargar_partida, guardar_fragmentos,
@@ -94,7 +94,7 @@ def menu():
         elif opcion == "2":
             estado = cargar_partida()
             if estado:
-                guardar_fragmentos(estado["inventario"])   # sincroniza el archivo de fragmentos
+                guardar_fragmentos(estado["inventario"])
                 jugar(estado)
         elif opcion == "3":
             mostrar_puntajes()
